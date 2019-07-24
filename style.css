@@ -1,0 +1,18 @@
+.fas{
+    background-color: grey;
+    padding: 8px;
+    border: 1px solid grey;
+    border-radius: 0px 3px 3px 0px;
+}
+
+#inputSearch{
+    margin-top: 2px;
+    background-color: #eee;
+    padding: 4px;
+    border:1px solid grey;
+    border-radius: 3px 0px 0px 3px;
+}
+
+.navbar-cust{
+    background-color: #eee;
+}

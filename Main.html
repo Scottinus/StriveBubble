@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <!--FontAwesome Kit-->
+    <script src="https://kit.fontawesome.com/1205482781.js"></script>
+
+    <title>StriveBubble</title>
+  </head>
+  <body>
+  
+        <div class="cointaner-fluid navbar-cust">
+                <div class="row">
+                    <div class = "col-md-4">
+                        <a href="#"><img src ="pictures/logo.png" width="150px"></a>
+                    </div>
+                    <div class = "col-md-4">
+                        <input type="text"  id ="inputSearch" placeholder="Search..">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class = "col-md-4">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="container cust-items">
+                <div class=" row">
+                    <div class ="col-md-4">
+                        <h2>Manage Ur Portfolio</h2>
+                    </div>
+                    <div class ="col-md-4">
+                            <input type="button" value="Upload Product">
+                        </div>
+                </div>
+                </div>
+           
+                <div class="container prod-upload">
+                        <div class="text-center">
+                                <p><strong>Product Information</strong></p>
+                                <form action="">
+                                 <p><strong>Name: </strong></p>
+                                 <input type="text" id="name" value=""><br>
+
+                                 <p class="mt-3"><strong>Description: </strong> </p>
+                                <input type="text" id="desc" value=""><br>
+
+                                 <p class="mt-3"><strong>Brand: </strong> </p>
+                                 <input type="text"  id="brand" value=""><br>
+
+                                 <p class="mt-3"><strong>Image Url: </strong> </p>
+                                 <input type="text"  id="imgUrl" value=""><br>
+
+                                 <p class="mt-3"><strong>Price: </strong> </p>
+                                 <input type="text"  id="price" value=""><br>
+
+                                 <input type="button" class="my-3" onclick="submitProd()" value="Submit">
+                                 </form>
+                                </div>
+                </div>
+
+
+                <div class="container prod-list">
+                    <div class="row boxProd">
+
+                    </div>
+                </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <script>
+                var urlParams = new URLSearchParams(window.location.search);
+                var username = urlParams.get("name");
+                var password = urlParams.get("pass");
+
+        window.onload = async () =>{
+
+
+        }
+
+         submitProd = async() =>{
+
+            var prod={
+                name: document.querySelector("#name").value,
+                description: document.querySelector("#desc").value,
+                brand: document.querySelector("#brand").value,
+                img: document.querySelector("#imgUrl").value,
+                price: document.querySelector("#price").value
+            }
+            console.log(prod);
+            let url = `https://cors-anywhere.herokuapp.com/https://strive-school-testing-apis.herokuapp.com/api/product/`
+let authString = `${username}:${password}`;
+let headers = new Headers();
+headers.set('Authorization', 'Basic ' + btoa(authString))
+fetch(url,
+{           method: "POST",
+            body: JSON.stringify(prod),
+            headers : new Headers({
+                "user3": "nZ4uFd9hBp3dvKLu",
+            })
+            })
+    .then(function (response) {
+        console.log (response)
+        if (!response.ok) throw new Error(response.status);
+        if(response.ok){
+            window.location.href =` Main.html?name=${username}&pass=${password}`;
+        }
+        return response
+    });
+        };
+
+
+
+    </script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
